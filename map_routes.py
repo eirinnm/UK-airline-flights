@@ -180,6 +180,9 @@ def main() -> None:
         for rank, i in enumerate(group):
             angle = 2 * np.pi * rank / len(group)
             label_offsets[codes[i]] = (16 * np.cos(angle), 16 * np.sin(angle))
+    # Keep these nearby airports visually ordered west-to-east on the map.
+    label_offsets["MAN"] = (12, 7)
+    label_offsets["LPL"] = (-12, -7)
 
     for code, (x, y) in projected_airports.items():
         dx, dy = label_offsets[code]
