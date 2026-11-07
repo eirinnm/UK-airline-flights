@@ -160,35 +160,10 @@ def main() -> None:
     airport_xy = np.asarray(list(projected_airports.values()))
     ax.scatter(airport_xy[:, 0], airport_xy[:, 1], s=10, c="#ffffff",
                edgecolors="#050505", linewidths=0.45, zorder=9)
-    codes = list(projected_airports)
-    coords = np.asarray([projected_airports[code] for code in codes])
-    label_offsets = {code: (4, 4) for code in codes}
-    close_groups = []
-    unseen = set(range(len(codes)))
-    while unseen:
-        group = {unseen.pop()}
-        frontier = list(group)
-        while frontier:
-            i = frontier.pop()
-            neighbors = {j for j in unseen if np.linalg.norm(coords[i] - coords[j]) < 50_000}
-            unseen -= neighbors
-            group |= neighbors
-            frontier.extend(neighbors)
-        if len(group) > 1:
-            close_groups.append(sorted(group))
-    for group in close_groups:
-        for rank, i in enumerate(group):
-            angle = 2 * np.pi * rank / len(group)
-            label_offsets[codes[i]] = (16 * np.cos(angle), 16 * np.sin(angle))
-    # Keep these nearby airports visually ordered west-to-east on the map.
-    label_offsets["MAN"] = (12, 7)
-    label_offsets["LPL"] = (-12, -7)
-
     for code, (x, y) in projected_airports.items():
-        dx, dy = label_offsets[code]
         ax.annotate(
-            code, (x, y), xytext=(dx, dy), textcoords="offset points",
-            ha="left" if dx >= 0 else "right", va="bottom" if dy >= 0 else "top",
+            code, (x, y), xytext=(0, 0), textcoords="offset points",
+            ha="center", va="center",
             color="white", fontsize=7.8, fontweight="bold", zorder=10,
             path_effects=[withStroke(linewidth=1.5, foreground="#000000")],
         )

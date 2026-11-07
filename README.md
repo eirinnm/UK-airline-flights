@@ -2,7 +2,7 @@
 
 ![Passenger Air Routes of Britain and Ireland](british_isles_air_routes.png)
 
-`map_routes.py` creates `british_isles_air_routes.png`: white coastlines for the British Isles and nearby land visible in the map frame on black, with passenger routes between airports inside the British Isles. Routes follow spherical great-circle arcs, use a uniform 1-point line width, and are coloured by dataset distance (blue to red), with a horizontal distance scale beneath the title. Airport markers are labelled with their IATA codes. The map uses British National Grid (OSGB36 / Transverse Mercator) with dark-blue latitude and longitude lines beneath the land fill.
+`map_routes.py` creates `british_isles_air_routes.png`: white coastlines for the British Isles and nearby land visible in the map frame on black, with passenger routes between airports inside the British Isles. Routes follow spherical great-circle arcs, use a uniform 1-point line width, and are coloured by dataset distance (blue to red), with a horizontal distance scale beneath the title. Airport markers are labelled with their IATA codes centered directly on the airport coordinates. The map uses British National Grid (OSGB36 / Transverse Mercator) with dark-blue latitude and longitude lines beneath the land fill.
 
 Run from this directory with [uv](https://docs.astral.sh/uv/):
 
